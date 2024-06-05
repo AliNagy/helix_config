@@ -36,6 +36,7 @@ command = "typescript-language-server"
 args = ["--stdio"] 
 
 [language-server.typescript-language-server.config]
+tsserver = { path = "/opt/homebrew/lib/node_modules/typescript/lib" }
 plugins = [{name = "@vue/typescript-plugin",location = "node_modules/@vue/typescript-plugin",languages = ["javascript", "typescript", "vue"]}]
 
 [language-server.typescript-language-server.config.typescript.inlayHints]
