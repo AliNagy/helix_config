@@ -1,0 +1,57 @@
+[[language]]
+name = "javascript"
+scope = "source.js"
+auto-format = true
+injection-regex = "(js|javascript)"
+language-id = "javascript"
+file-types = ["js", "mjs", "cjs", "rules", "es6", "pac", "ts", "stories.ts"]
+shebangs = ["node"]
+comment-token = "//"
+language-servers = [ "typescript-language-server" ]
+formatter = { command = "prettier", args = ["--parser", "typescript"] }
+
+[[language]]
+name = "vue"
+auto-format = true
+scope = "source.vue"
+injection-regex = "vue"
+file-types = ["vue"]
+roots = ["package.json"]
+formatter = { command = "prettier", args = ["--parser", "vue"] }
+language-servers = ["vuels", "tailwind", "typescript-language-server"]
+
+[language-server.vuels]
+command = "vue-language-server" 
+args = ["--stdio"] 
+
+[language-server.vuels.config]
+typescript = { tsdk = "/opt/homebrew/lib/node_modules/typescript/lib"  }
+
+[language-server.tailwind]
+command = "tailwindcss-language-server" 
+args = ["-vvv", "--stdio"] 
+
+[language-server.typescript-language-server]
+command = "typescript-language-server" 
+args = ["--stdio"] 
+
+[language-server.typescript-language-server.config]
+plugins = [{name = "@vue/typescript-plugin",location = "node_modules/@vue/typescript-plugin",languages = ["javascript", "typescript", "vue"]}]
+
+[language-server.typescript-language-server.config.typescript.inlayHints]
+includeInlayEnumMemberValueHints = true
+includeInlayFunctionLikeReturnTypeHints = true
+includeInlayFunctionParameterTypeHints = true
+includeInlayParameterNameHints = "all"
+includeInlayParameterNameHintsWhenArgumentMatchesName = true
+includeInlayPropertyDeclarationTypeHints = true
+includeInlayVariableTypeHints = true
+
+[language-server.typescript-language-server.config.javascript.inlayHints]
+includeInlayEnumMemberValueHints = true
+includeInlayFunctionLikeReturnTypeHints = true
+includeInlayFunctionParameterTypeHints = true
+includeInlayParameterNameHints = "all"
+includeInlayParameterNameHintsWhenArgumentMatchesName = true
+includeInlayPropertyDeclarationTypeHints = true
+includeInlayVariableTypeHints = true
