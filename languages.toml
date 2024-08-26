@@ -11,14 +11,32 @@ language-servers = [ "typescript-language-server" ]
 formatter = { command = "prettier", args = ["--parser", "typescript"] }
 
 [[language]]
+name = "typescript"
+language-id = "typescript"
+scope = "source.ts"
+injection-regex = "^(ts|typescript)$"
+file-types = ["ts"]
+shebangs = ["deno"]
+roots = ["deno.json", "deno.jsonc", "package.json"]
+auto-format = true
+language-servers = ["deno"]
+
+[[language]]
 name = "vue"
 auto-format = true
 scope = "source.vue"
-injection-regex = "vue"
+injection-regex = "^(vue)$"
 file-types = ["vue"]
 roots = ["package.json"]
 formatter = { command = "prettier", args = ["--parser", "vue"] }
 language-servers = ["vuels", "tailwind", "typescript-language-server"]
+
+[language-server.deno]
+command = "deno"
+args = ["lsp"]
+
+[language-server.deno.config.deno]
+enable = true
 
 [language-server.vuels]
 command = "vue-language-server" 
